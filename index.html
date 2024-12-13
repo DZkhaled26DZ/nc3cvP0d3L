@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تحليل العملات الرقمية - MACD</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>تحليل العملات الرقمية باستخدام MACD</h1>
+        </header>
+
+        <div class="controls">
+            <div class="timeframe-selectors">
+                <div class="selector-group">
+                    <label>إطارات DIF و DEA:</label>
+                    <div class="timeframe-options" id="linePositionTimeframes">
+                        <div class="timeframe-option">
+                            <input type="checkbox" id="line1m" value="1m">
+                            <label for="line1m">1 دقيقة</label>
+                        </div>
+                        <div class="timeframe-option">
+                            <input type="checkbox" id="line3m" value="3m">
+                            <label for="line3m">3 دقائق</label>
+                        </div>
+                        <div class="timeframe-option">
+                            <input type="checkbox" id="line5m" value="5m">
+                            <label for="line5m">5 دقائق</label>
+                        </div>
+                        <div class="timeframe-option">
+                            <input type="checkbox" id="line15m" value="15m">
+                            <label for="line15m">15 دقيقة</label>
+                        </div>
+                        <div class="timeframe-option">
+                            <input type="checkbox" id="line30m" value="30m">
+                            <label for="line30m">30 دقيقة</label>
+                        </div>
+                        <div class="timeframe-option">
+                            <input type="checkbox" id="line1h" value="1h">
+                            <label for="line1h">1 ساعة</label>
+                        </div>
+                        <div class="timeframe-option">
+                            <input type="checkbox" id="line2h" value="2h">
+                            <label for="line2h">2 ساعة</label>
+                        </div>
+                        <div class="timeframe-option">
+                            <input type="checkbox" id="line4h" value="4h">
+                            <label for="line4h">4 ساعات</label>
+                        </div>
+                        <div class="timeframe-option">
+                            <input type="checkbox" id="line1d" value="1d">
+                            <label for="line1d">يوم</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="selector-group">
+                    <label>إطار التقاطع:</label>
+                    <div class="timeframe-options" id="crossoverTimeframes">
+                        <div class="timeframe-option">
+                            <input type="checkbox" id="cross1m" value="1m">
+                            <label for="cross1m">1 دقيقة</label>
+                        </div>
+                        <div class="timeframe-option">
+                            <input type="checkbox" id="cross3m" value="3m">
+                            <label for="cross3m">3 دقائق</label>
+                        </div>
+                        <div class="timeframe-option">
+                            <input type="checkbox" id="cross5m" value="5m">
+                            <label for="cross5m">5 دقائق</label>
+                        </div>
+                        <div class="timeframe-option">
+                            <input type="checkbox" id="cross15m" value="15m">
+                            <label for="cross15m">15 دقيقة</label>
+                        </div>
+                        <div class="timeframe-option">
+                            <input type="checkbox" id="cross30m" value="30m">
+                            <label for="cross30m">30 دقيقة</label>
+                        </div>
+                        <div class="timeframe-option">
+                            <input type="checkbox" id="cross1h" value="1h">
+                            <label for="cross1h">1 ساعة</label>
+                        </div>
+                        <div class="timeframe-option">
+                            <input type="checkbox" id="cross2h" value="2h">
+                            <label for="cross2h">2 ساعة</label>
+                        </div>
+                        <div class="timeframe-option">
+                            <input type="checkbox" id="cross4h" value="4h">
+                            <label for="cross4h">4 ساعات</label>
+                        </div>
+                        <div class="timeframe-option">
+                            <input type="checkbox" id="cross1d" value="1d">
+                            <label for="cross1d">يوم</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button id="startBtn" class="btn-3d">بدء البحث</button>
+                <button id="randomBtn" class="btn-3d random">بحث عشوائي</button>
+                <button id="refreshBtn" class="btn-3d">تحديث</button>
+                <div class="sound-control">
+                    <button id="soundToggle" class="btn-3d">🔇</button>
+                    <input type="range" id="volumeControl" min="0" max="100" value="50">
+                </div>
+            </div>
+        </div>
+
+        <div class="results">
+            <table id="resultsTable">
+                <thead>
+                    <tr>
+                        <th data-sort="symbol">العملة ⇅</th>
+                        <th data-sort="price">السعر ⇅</th>
+                        <th data-sort="timestamp">وقت تحقق الشرط ⇅</th>
+                        <th data-sort="volume">حجم التداول ⇅</th>
+                        <th data-sort="macdTrend">اتجاه MACD ⇅</th>
+                        <th data-sort="timeframe">الإطار الزمني ⇅</th>
+                        <th>الأهداف السعرية</th>
+                        <th>وقف الخسارة</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+
+        <footer>
+            <p>حقوق الملكية محفوظة لـ خالد دراغة</p>
+            <p>للتواصل: gsmkhaledtiaret@gmail.com</p>
+        </footer>
+    </div>
+
+    <audio id="notificationSound" src="data:audio/mpeg;base64,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"></audio>
+    <script src="script.js"></script>
+</body>
+</html>
